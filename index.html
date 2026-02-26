@@ -2,26 +2,14 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Zikir - Manevi Tesbihat</title>
   <meta name="description" content="Günlük zikir ve tesbihat uygulaması" />
-
-  <!-- PWA Meta Tags -->
   <meta name="theme-color" content="#1a0f0a" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Zikir" />
-  <meta name="application-name" content="Zikir" />
-
-  <!-- Apple Touch Icons (inline SVG) -->
-  <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIj48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgcng9IjMwIiBmaWxsPSIjMWEwZjBhIi8+PGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iNzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M5OTczYSIgc3Ryb2tlLXdpZHRoPSIzIiBvcGFjaXR5PSIwLjUiLz48dGV4dCB4PSI5MCIgeT0iMTEyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjgwIiBmaWxsPSIjYzk5NzNhIj7imJE8L3RleHQ+PC9zdmc+" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTIiIGZpbGw9IiMxYTBmMGEiLz48dGV4dCB4PSIzMiIgeT0iNDYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMzYiIGZpbGw9IiNjOTk3M2EiPuKYkTwvdGV4dD48L3N2Zz4=" />
-
-  <!-- Fonts -->
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&family=Cinzel+Decorative:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
-
   <style>
     :root {
       --gold: #c9973a;
@@ -33,6 +21,8 @@
       --dark-4: #2e1c14;
       --cream: #f5e6c8;
       --cream-dim: #c4aa7a;
+      --red: #8b2020;
+      --green: #1a4a2e;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -42,19 +32,19 @@
       color: var(--cream);
       font-family: 'Lora', serif;
       min-height: 100vh;
-      min-height: 100dvh;
       overflow-x: hidden;
       position: relative;
-      -webkit-tap-highlight-color: transparent;
     }
 
+    /* Geometric background pattern */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
       background-image:
         radial-gradient(circle at 20% 20%, rgba(201,151,58,0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(201,151,58,0.06) 0%, transparent 50%);
+        radial-gradient(circle at 80% 80%, rgba(201,151,58,0.06) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(139,32,32,0.04) 0%, transparent 70%);
       pointer-events: none;
       z-index: 0;
     }
@@ -63,7 +53,7 @@
       content: '';
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23c9973a' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9973a' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
       pointer-events: none;
       z-index: 0;
     }
@@ -74,73 +64,16 @@
       max-width: 480px;
       margin: 0 auto;
       min-height: 100vh;
-      min-height: 100dvh;
       display: flex;
       flex-direction: column;
     }
 
-    /* Offline/Online bars */
-    #offlineBar {
-      display: none;
-      background: rgba(139,32,32,0.9);
-      color: #ffb3b3;
-      text-align: center;
-      padding: 7px;
-      font-size: 0.75rem;
-    }
-    #offlineBar.show { display: block; }
-    #onlineBar {
-      display: none;
-      background: rgba(26,74,46,0.9);
-      color: #8fffa8;
-      text-align: center;
-      padding: 7px;
-      font-size: 0.75rem;
-    }
-    #onlineBar.show { display: block; }
-
-    /* Install Banner */
-    #installBanner {
-      display: none;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      background: linear-gradient(135deg, rgba(201,151,58,0.15), rgba(201,151,58,0.08));
-      border-bottom: 1px solid rgba(201,151,58,0.3);
-      padding: 10px 16px;
-      font-size: 0.8rem;
-      color: var(--cream-dim);
-    }
-    #installBanner.visible { display: flex; }
-
-    #installBanner .install-btn {
-      background: var(--gold);
-      border: none;
-      color: var(--dark);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-family: 'Lora', serif;
-      font-size: 0.78rem;
-      font-weight: 600;
-      cursor: pointer;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    #installBanner .close-btn {
-      background: none;
-      border: none;
-      color: var(--cream-dim);
-      font-size: 1.1rem;
-      cursor: pointer;
-      padding: 2px 6px;
-      flex-shrink: 0;
-    }
-
+    /* Header */
     header {
       text-align: center;
       padding: 28px 20px 16px;
       border-bottom: 1px solid rgba(201,151,58,0.2);
+      position: relative;
     }
 
     .bismillah {
@@ -169,6 +102,7 @@
       opacity: 0.7;
     }
 
+    /* Navigation */
     nav {
       display: flex;
       border-bottom: 1px solid rgba(201,151,58,0.15);
@@ -187,9 +121,17 @@
       border-bottom: 2px solid transparent;
       letter-spacing: 0.05em;
     }
-    nav button.active { color: var(--gold-light); border-bottom-color: var(--gold); }
-    nav button:hover:not(.active) { color: var(--cream); }
 
+    nav button.active {
+      color: var(--gold-light);
+      border-bottom-color: var(--gold);
+    }
+
+    nav button:hover:not(.active) {
+      color: var(--cream);
+    }
+
+    /* Pages */
     .page { display: none; flex: 1; flex-direction: column; animation: fadeIn 0.3s ease; }
     .page.active { display: flex; }
 
@@ -198,14 +140,16 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ZİKİR SAYFASI */
+    /* === ZİKİR SAYFASI === */
     #page-zikir {
       align-items: center;
       padding: 20px 16px;
       gap: 16px;
     }
 
-    .zikir-selector { width: 100%; }
+    .zikir-selector {
+      width: 100%;
+    }
 
     .zikir-selector select {
       width: 100%;
@@ -222,6 +166,7 @@
       background-repeat: no-repeat;
       background-position: right 12px center;
     }
+
     .zikir-selector select:focus { outline: none; border-color: var(--gold); }
 
     .arabic-display {
@@ -242,26 +187,39 @@
       margin-bottom: 8px;
     }
 
-    .transliteration { font-style: italic; font-size: 0.85rem; color: var(--cream-dim); margin-bottom: 4px; }
-    .meaning { font-size: 0.78rem; color: var(--cream-dim); opacity: 0.7; }
+    .transliteration {
+      font-style: italic;
+      font-size: 0.85rem;
+      color: var(--cream-dim);
+      margin-bottom: 4px;
+    }
 
+    .meaning {
+      font-size: 0.78rem;
+      color: var(--cream-dim);
+      opacity: 0.7;
+    }
+
+    /* Counter circle */
     .counter-wrap {
       position: relative;
       width: 200px;
       height: 200px;
       flex-shrink: 0;
-      touch-action: manipulation;
-      cursor: pointer;
     }
 
     .counter-svg {
       position: absolute;
       inset: 0;
       transform: rotate(-90deg);
-      pointer-events: none;
     }
 
-    .counter-track { fill: none; stroke: rgba(201,151,58,0.1); stroke-width: 4; }
+    .counter-track {
+      fill: none;
+      stroke: rgba(201,151,58,0.1);
+      stroke-width: 4;
+    }
+
     .counter-progress {
       fill: none;
       stroke: var(--gold);
@@ -278,8 +236,9 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
       user-select: none;
-      pointer-events: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .counter-number {
@@ -290,25 +249,42 @@
       transition: transform 0.1s;
     }
 
-    .counter-number.tap { transform: scale(0.88); }
-    .counter-target { font-size: 0.7rem; color: var(--cream-dim); margin-top: 4px; }
+    .counter-number.tap {
+      transform: scale(0.9);
+    }
 
-    .counter-bg {
+    .counter-target {
+      font-size: 0.7rem;
+      color: var(--cream-dim);
+      margin-top: 4px;
+    }
+
+    .counter-inner::before {
+      content: '';
       position: absolute;
       inset: 10px;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(201,151,58,0.05) 0%, transparent 70%);
-      transition: background 0.15s;
-      pointer-events: none;
+      transition: background 0.2s;
     }
 
-    .counter-wrap:active .counter-bg {
-      background: radial-gradient(circle, rgba(201,151,58,0.18) 0%, transparent 70%);
+    .counter-inner:active::before {
+      background: radial-gradient(circle, rgba(201,151,58,0.15) 0%, transparent 70%);
     }
 
-    .tap-hint { font-size: 0.72rem; color: var(--gold-dim); letter-spacing: 0.1em; text-transform: uppercase; }
+    .tap-hint {
+      font-size: 0.72rem;
+      color: var(--gold-dim);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
 
-    .controls { display: flex; gap: 10px; width: 100%; }
+    /* Controls */
+    .controls {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+    }
 
     .btn {
       flex: 1;
@@ -322,37 +298,48 @@
       cursor: pointer;
       transition: all 0.2s;
       letter-spacing: 0.05em;
-      touch-action: manipulation;
     }
-    .btn:hover { border-color: var(--gold); color: var(--gold-light); background: var(--dark-4); }
+
+    .btn:hover {
+      border-color: var(--gold);
+      color: var(--gold-light);
+      background: var(--dark-4);
+    }
 
     .btn-primary {
       background: linear-gradient(135deg, var(--gold-dim), rgba(201,151,58,0.6));
       border-color: var(--gold);
       color: var(--cream);
     }
+
     .btn-primary:hover {
       background: linear-gradient(135deg, var(--gold), var(--gold-light));
       color: var(--dark);
     }
 
+    /* Sets display */
     .sets-display {
       display: flex;
       gap: 8px;
       align-items: center;
       font-size: 0.8rem;
       color: var(--cream-dim);
-      min-height: 20px;
     }
 
     .set-dot {
-      width: 8px; height: 8px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: rgba(201,151,58,0.3);
       transition: background 0.3s;
     }
-    .set-dot.done { background: var(--gold); box-shadow: 0 0 6px rgba(201,151,58,0.5); }
 
+    .set-dot.done {
+      background: var(--gold);
+      box-shadow: 0 0 6px rgba(201,151,58,0.5);
+    }
+
+    /* Completion overlay */
     .completion-flash {
       position: fixed;
       inset: 0;
@@ -360,8 +347,13 @@
       pointer-events: none;
       opacity: 0;
       z-index: 100;
+      transition: opacity 0.5s;
     }
-    .completion-flash.show { animation: flash 1s ease-out forwards; }
+
+    .completion-flash.show {
+      opacity: 1;
+      animation: flash 1s ease-out forwards;
+    }
 
     @keyframes flash {
       0% { opacity: 0; }
@@ -369,29 +361,20 @@
       100% { opacity: 0; }
     }
 
-    @keyframes ripple {
-      from { transform: scale(0.8); opacity: 0.6; }
-      to { transform: scale(1.2); opacity: 0; }
+    /* === İSTATİSTİK === */
+    #page-istatistik {
+      padding: 20px 16px;
+      gap: 16px;
+      overflow-y: auto;
     }
-
-    .ripple {
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      border: 2px solid var(--gold);
-      animation: ripple 0.6s ease-out forwards;
-      pointer-events: none;
-    }
-
-    /* İSTATİSTİK */
-    #page-istatistik { padding: 20px 16px; gap: 16px; overflow-y: auto; }
 
     .section-title {
       font-family: 'Cinzel Decorative', cursive;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       color: var(--gold-dim);
       letter-spacing: 0.2em;
       text-transform: uppercase;
+      margin-bottom: 2px;
     }
 
     .stat-card {
@@ -401,11 +384,36 @@
       padding: 14px 16px;
     }
 
-    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .stat-item { text-align: center; padding: 10px; background: var(--dark-4); border-radius: 8px; }
-    .stat-value { font-family: 'Cinzel Decorative', cursive; font-size: 1.4rem; color: var(--gold-light); }
-    .stat-label { font-size: 0.7rem; color: var(--cream-dim); margin-top: 2px; }
-    .history-list { display: flex; flex-direction: column; gap: 8px; }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 10px;
+      background: var(--dark-4);
+      border-radius: 8px;
+    }
+
+    .stat-value {
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: 1.4rem;
+      color: var(--gold-light);
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      color: var(--cream-dim);
+      margin-top: 2px;
+    }
+
+    .history-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
 
     .history-item {
       display: flex;
@@ -417,13 +425,36 @@
       border-left: 3px solid var(--gold-dim);
     }
 
-    .history-zikir { font-size: 0.85rem; color: var(--cream); }
-    .history-detail { font-size: 0.72rem; color: var(--cream-dim); }
-    .history-count { font-family: 'Cinzel Decorative', cursive; font-size: 1rem; color: var(--gold); }
-    .empty-state { text-align: center; color: var(--cream-dim); font-size: 0.85rem; padding: 30px; opacity: 0.6; }
+    .history-zikir {
+      font-size: 0.85rem;
+      color: var(--cream);
+    }
 
-    /* AYARLAR */
-    #page-ayarlar { padding: 20px 16px; gap: 16px; overflow-y: auto; }
+    .history-detail {
+      font-size: 0.72rem;
+      color: var(--cream-dim);
+    }
+
+    .history-count {
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: 1rem;
+      color: var(--gold);
+    }
+
+    .empty-state {
+      text-align: center;
+      color: var(--cream-dim);
+      font-size: 0.85rem;
+      padding: 30px;
+      opacity: 0.6;
+    }
+
+    /* === AYARLAR === */
+    #page-ayarlar {
+      padding: 20px 16px;
+      gap: 16px;
+      overflow-y: auto;
+    }
 
     .setting-group {
       background: var(--dark-3);
@@ -439,12 +470,30 @@
       padding: 14px 16px;
       border-bottom: 1px solid rgba(201,151,58,0.08);
     }
-    .setting-row:last-child { border-bottom: none; }
-    .setting-label { font-size: 0.88rem; color: var(--cream); }
-    .setting-desc { font-size: 0.72rem; color: var(--cream-dim); margin-top: 2px; }
 
-    .toggle { position: relative; width: 44px; height: 24px; flex-shrink: 0; }
+    .setting-row:last-child { border-bottom: none; }
+
+    .setting-label {
+      font-size: 0.88rem;
+      color: var(--cream);
+    }
+
+    .setting-desc {
+      font-size: 0.72rem;
+      color: var(--cream-dim);
+      margin-top: 2px;
+    }
+
+    /* Toggle */
+    .toggle {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
     .toggle input { opacity: 0; width: 0; height: 0; }
+
     .toggle-slider {
       position: absolute;
       inset: 0;
@@ -453,21 +502,38 @@
       cursor: pointer;
       transition: 0.3s;
     }
+
     .toggle-slider::before {
       content: '';
       position: absolute;
-      width: 18px; height: 18px;
-      left: 3px; top: 3px;
+      width: 18px;
+      height: 18px;
+      left: 3px;
+      top: 3px;
       background: var(--cream-dim);
       border-radius: 50%;
       transition: 0.3s;
     }
-    .toggle input:checked + .toggle-slider { background: rgba(201,151,58,0.6); }
-    .toggle input:checked + .toggle-slider::before { transform: translateX(20px); background: var(--gold-light); }
 
-    .num-input { display: flex; align-items: center; gap: 8px; }
+    .toggle input:checked + .toggle-slider {
+      background: rgba(201,151,58,0.6);
+    }
+
+    .toggle input:checked + .toggle-slider::before {
+      transform: translateX(20px);
+      background: var(--gold-light);
+    }
+
+    /* Number input */
+    .num-input {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
     .num-btn {
-      width: 28px; height: 28px;
+      width: 28px;
+      height: 28px;
       border-radius: 6px;
       border: 1px solid rgba(201,151,58,0.3);
       background: var(--dark-4);
@@ -478,12 +544,28 @@
       align-items: center;
       justify-content: center;
       transition: all 0.2s;
-      touch-action: manipulation;
     }
-    .num-btn:hover { border-color: var(--gold); background: rgba(201,151,58,0.1); }
-    .num-val { font-family: 'Cinzel Decorative', cursive; font-size: 0.9rem; color: var(--gold-light); min-width: 30px; text-align: center; }
 
-    .custom-form { display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; }
+    .num-btn:hover {
+      border-color: var(--gold);
+      background: rgba(201,151,58,0.1);
+    }
+
+    .num-val {
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: 0.9rem;
+      color: var(--gold-light);
+      min-width: 30px;
+      text-align: center;
+    }
+
+    /* Custom zikir section */
+    .custom-form {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 14px 16px;
+    }
 
     .input-field {
       width: 100%;
@@ -496,652 +578,566 @@
       border-radius: 8px;
       transition: border-color 0.2s;
     }
+
     .input-field:focus { outline: none; border-color: var(--gold); }
     .input-field::placeholder { color: rgba(196,170,122,0.4); }
 
-    /* Install card */
-    .install-card {
-      background: linear-gradient(135deg, rgba(201,151,58,0.1), rgba(201,151,58,0.05));
-      border: 1px solid rgba(201,151,58,0.3);
+    .pwa-hint {
+      background: linear-gradient(135deg, var(--dark-3), var(--dark-4));
+      border: 1px solid rgba(201,151,58,0.25);
       border-radius: 10px;
       padding: 16px;
-    }
-
-    .install-card h3 {
-      font-family: 'Cinzel Decorative', cursive;
-      font-size: 0.72rem;
-      color: var(--gold);
-      letter-spacing: 0.15em;
-      margin-bottom: 12px;
-    }
-
-    .install-steps { display: flex; flex-direction: column; gap: 8px; }
-    .install-step {
-      display: flex;
-      gap: 10px;
       font-size: 0.82rem;
       color: var(--cream-dim);
-      line-height: 1.5;
+      line-height: 1.6;
     }
-    .install-step .ico { flex-shrink: 0; font-size: 1.1rem; }
 
-    #directInstallBtn {
-      display: none;
-      width: 100%;
-      margin-bottom: 14px;
-      padding: 12px;
-      background: var(--gold);
-      border: none;
-      border-radius: 8px;
-      color: var(--dark);
+    .pwa-hint strong {
+      color: var(--gold);
+      display: block;
+      margin-bottom: 8px;
       font-family: 'Cinzel Decorative', cursive;
-      font-size: 0.82rem;
+      font-size: 0.75rem;
       letter-spacing: 0.1em;
-      cursor: pointer;
-      transition: background 0.2s;
     }
-    #directInstallBtn.visible { display: block; }
-    #directInstallBtn:hover { background: var(--gold-light); }
 
-    .ornament { text-align: center; color: var(--gold-dim); font-size: 1.2rem; opacity: 0.5; letter-spacing: 0.5em; }
+    .pwa-hint ul {
+      padding-left: 16px;
+    }
+
+    .pwa-hint li {
+      margin-bottom: 4px;
+    }
+
+    /* Ornament */
+    .ornament {
+      text-align: center;
+      color: var(--gold-dim);
+      font-size: 1.2rem;
+      opacity: 0.5;
+      letter-spacing: 0.5em;
+    }
+
+    /* Ripple effect on tap */
+    @keyframes ripple {
+      from { transform: scale(0.8); opacity: 0.6; }
+      to { transform: scale(1.2); opacity: 0; }
+    }
+
+    .ripple {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      animation: ripple 0.6s ease-out forwards;
+      pointer-events: none;
+    }
+
+    /* Vibration feedback visual */
+    @keyframes pulse-gold {
+      0% { box-shadow: 0 0 0 0 rgba(201,151,58,0.4); }
+      70% { box-shadow: 0 0 0 15px rgba(201,151,58,0); }
+      100% { box-shadow: 0 0 0 0 rgba(201,151,58,0); }
+    }
+
+    .scrollable { overflow-y: auto; }
   </style>
 </head>
 <body>
+  <div id="app">
+    <div class="completion-flash" id="completionFlash"></div>
 
-<div id="app">
-  <div class="completion-flash" id="completionFlash"></div>
-  <div id="offlineBar">📵 Çevrimdışı — Uygulama çalışmaya devam ediyor</div>
-  <div id="onlineBar">✓ Tekrar çevrimiçi</div>
-  <div id="installBanner">
-    <span>📱 Uygulamayı ana ekrana ekle</span>
-    <button class="install-btn" onclick="triggerInstall()">Yükle</button>
-    <button class="close-btn" onclick="hideBanner()">✕</button>
+    <header>
+      <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+      <h1>Zikir</h1>
+      <div class="date-display" id="dateDisplay"></div>
+    </header>
+
+    <nav>
+      <button class="active" onclick="showPage('zikir', this)">Tesbihat</button>
+      <button onclick="showPage('istatistik', this)">İstatistik</button>
+      <button onclick="showPage('ayarlar', this)">Ayarlar</button>
+    </nav>
+
+    <!-- ZİKİR SAYFASI -->
+    <div class="page active" id="page-zikir">
+      <div class="zikir-selector">
+        <select id="zikirSelect" onchange="changeZikir()"></select>
+      </div>
+
+      <div class="arabic-display">
+        <div class="arabic-text" id="arabicText"></div>
+        <div class="transliteration" id="translitText"></div>
+        <div class="meaning" id="meaningText"></div>
+      </div>
+
+      <div class="counter-wrap" id="counterWrap" onclick="handleTap()">
+        <svg class="counter-svg" viewBox="0 0 200 200">
+          <circle class="counter-track" cx="100" cy="100" r="90"/>
+          <circle class="counter-progress" id="progressCircle" cx="100" cy="100" r="90"
+            stroke-dasharray="565.5"
+            stroke-dashoffset="565.5"/>
+        </svg>
+        <div class="counter-inner">
+          <div class="counter-number" id="counterNum">0</div>
+          <div class="counter-target" id="counterTarget">/ 33</div>
+        </div>
+      </div>
+
+      <div class="tap-hint">Dokunarak say</div>
+
+      <div class="sets-display" id="setsDisplay"></div>
+
+      <div class="controls">
+        <button class="btn" onclick="undoTap()">↩ Geri Al</button>
+        <button class="btn" onclick="resetCounter()">Sıfırla</button>
+        <button class="btn btn-primary" onclick="saveSession()">✓ Kaydet</button>
+      </div>
+    </div>
+
+    <!-- İSTATİSTİK SAYFASI -->
+    <div class="page" id="page-istatistik">
+      <div class="section-title">Bugünkü Özet</div>
+      <div class="stat-card">
+        <div class="stat-grid" id="statGrid"></div>
+      </div>
+
+      <div class="section-title">Geçmiş Kayıtlar</div>
+      <div class="history-list" id="historyList"></div>
+    </div>
+
+    <!-- AYARLAR SAYFASI -->
+    <div class="page" id="page-ayarlar">
+      <div class="section-title">Sayaç Ayarları</div>
+      <div class="setting-group">
+        <div class="setting-row">
+          <div>
+            <div class="setting-label">Hedef Sayı</div>
+            <div class="setting-desc">Her tur için sayım hedefi</div>
+          </div>
+          <div class="num-input">
+            <button class="num-btn" onclick="changeTarget(-1)">−</button>
+            <div class="num-val" id="targetDisplay">33</div>
+            <button class="num-btn" onclick="changeTarget(1)">+</button>
+          </div>
+        </div>
+        <div class="setting-row">
+          <div>
+            <div class="setting-label">Titreşim</div>
+            <div class="setting-desc">Her dokunuşta titreşim</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="vibToggle" checked onchange="saveSetting('vibration', this.checked)"/>
+            <div class="toggle-slider"></div>
+          </label>
+        </div>
+        <div class="setting-row">
+          <div>
+            <div class="setting-label">Tamamlanma Sesi</div>
+            <div class="setting-desc">Tur tamamlandığında ses</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="soundToggle" checked onchange="saveSetting('sound', this.checked)"/>
+            <div class="toggle-slider"></div>
+          </label>
+        </div>
+      </div>
+
+      <div class="section-title">Özel Zikir Ekle</div>
+      <div class="setting-group">
+        <div class="custom-form">
+          <input class="input-field" id="customArabic" placeholder="Arapça metin (isteğe bağlı)" dir="rtl"/>
+          <input class="input-field" id="customName" placeholder="Zikir adı (örn: Allahu Ekber)"/>
+          <input class="input-field" id="customTranslit" placeholder="Okunuş"/>
+          <input class="input-field" id="customMeaning" placeholder="Anlamı"/>
+          <button class="btn btn-primary" onclick="addCustomZikir()">+ Zikir Ekle</button>
+        </div>
+      </div>
+
+      <div class="section-title">Masaüstüne / Telefona Kaydet</div>
+      <div class="pwa-hint">
+        <strong>📱 Ana Ekrana Ekle</strong>
+        <ul>
+          <li><strong>iPhone/iPad:</strong> Safari'de aç → Paylaş → "Ana Ekrana Ekle"</li>
+          <li><strong>Android:</strong> Chrome'da aç → Menü (⋮) → "Ana ekrana ekle"</li>
+          <li><strong>Masaüstü:</strong> Chrome/Edge adres çubuğundaki ⊕ simgesine tıkla</li>
+        </ul>
+      </div>
+
+      <div class="section-title">Tehlikeli Bölge</div>
+      <div class="setting-group">
+        <div class="setting-row">
+          <div>
+            <div class="setting-label" style="color:#e07070">Tüm Verileri Sil</div>
+            <div class="setting-desc">Geçmiş kayıtlar silinir</div>
+          </div>
+          <button class="btn" style="flex:0;color:#e07070;border-color:#8b2020" onclick="clearAllData()">Sil</button>
+        </div>
+      </div>
+
+      <div class="ornament">✦ ✦ ✦</div>
+    </div>
   </div>
 
-  <header>
-    <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
-    <h1>Zikir</h1>
-    <div class="date-display" id="dateDisplay"></div>
-  </header>
+  <script>
+    // ==================== VERİ ====================
+    const DEFAULT_ZIKIRLER = [
+      { id: 'subhanallah', name: 'Sübhanallah', arabic: 'سُبْحَانَ اللهِ', translit: 'Sübhânallâh', meaning: 'Allah\'ı tüm noksanlıklardan tenzih ederim' },
+      { id: 'elhamdulillah', name: 'Elhamdülillah', arabic: 'الْحَمْدُ للهِ', translit: 'Elhamdülillâh', meaning: 'Hamd Allah\'a mahsustur' },
+      { id: 'allahuekber', name: 'Allahu Ekber', arabic: 'اللهُ أَكْبَرُ', translit: 'Allâhu Ekber', meaning: 'Allah en büyüktür' },
+      { id: 'laileha', name: 'Lâ ilâhe illallah', arabic: 'لَا إِلَهَ إِلَّا اللهُ', translit: 'Lâ ilâhe illallâh', meaning: 'Allah\'tan başka ilah yoktur' },
+      { id: 'salavat', name: 'Salavat', arabic: 'اَللّٰهُمَّ صَلِّ عَلٰى مُحَمَّدٍ', translit: 'Allâhümme salli alâ Muhammed', meaning: 'Allah\'ım, Muhammed\'e salat et' },
+      { id: 'istigfar', name: 'İstiğfar', arabic: 'أَسْتَغْفِرُ اللهَ', translit: 'Estağfirullâh', meaning: 'Allah\'tan bağışlanma dilerim' },
+      { id: 'hasbiyallah', name: 'Hasbiyallah', arabic: 'حَسْبِيَ اللهُ وَنِعْمَ الْوَكِيلُ', translit: 'Hasbiyallâhu ve ni\'mel vekîl', meaning: 'Allah bana yeter, O ne güzel vekildir' },
+      { id: 'subhane', name: 'Tesbih Tesbihi', arabic: 'سُبْحَانَ اللهِ وَبِحَمْدِهِ', translit: 'Sübhânallâhi ve bi hamdihî', meaning: 'Allah\'ı hamdederek tenzih ederim' },
+    ];
 
-  <nav>
-    <button class="active" onclick="showPage('zikir', this)">Tesbihat</button>
-    <button onclick="showPage('istatistik', this)">İstatistik</button>
-    <button onclick="showPage('ayarlar', this)">Ayarlar</button>
-  </nav>
+    // ==================== STATE ====================
+    let state = {
+      count: 0,
+      sets: 0,
+      currentZikirId: 'subhanallah',
+      target: 33,
+      vibration: true,
+      sound: true,
+      zikirler: [],
+      history: []
+    };
 
-  <!-- ZİKİR -->
-  <div class="page active" id="page-zikir">
-    <div class="zikir-selector">
-      <select id="zikirSelect" onchange="changeZikir()"></select>
-    </div>
+    function loadState() {
+      try {
+        const saved = localStorage.getItem('zikir_app_v2');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          state = { ...state, ...parsed };
+        }
+      } catch(e) {}
+      // Merge default zikirler
+      const customIds = state.zikirler.map(z => z.id);
+      state.zikirler = [
+        ...DEFAULT_ZIKIRLER,
+        ...state.zikirler.filter(z => !DEFAULT_ZIKIRLER.find(d => d.id === z.id))
+      ];
+    }
 
-    <div class="arabic-display">
-      <div class="arabic-text" id="arabicText"></div>
-      <div class="transliteration" id="translitText"></div>
-      <div class="meaning" id="meaningText"></div>
-    </div>
+    function saveState() {
+      try {
+        // Only save custom zikirler + settings
+        const toSave = {
+          currentZikirId: state.currentZikirId,
+          target: state.target,
+          vibration: state.vibration,
+          sound: state.sound,
+          zikirler: state.zikirler.filter(z => !DEFAULT_ZIKIRLER.find(d => d.id === z.id)),
+          history: state.history.slice(0, 100) // max 100 kayıt
+        };
+        localStorage.setItem('zikir_app_v2', JSON.stringify(toSave));
+      } catch(e) {}
+    }
 
-    <div class="counter-wrap" id="counterWrap">
-      <svg class="counter-svg" viewBox="0 0 200 200">
-        <circle class="counter-track" cx="100" cy="100" r="90"/>
-        <circle class="counter-progress" id="progressCircle" cx="100" cy="100" r="90"
-          stroke-dasharray="565.5" stroke-dashoffset="565.5"/>
-      </svg>
-      <div class="counter-bg"></div>
-      <div class="counter-inner">
-        <div class="counter-number" id="counterNum">0</div>
-        <div class="counter-target" id="counterTarget">/ 33</div>
-      </div>
-    </div>
+    // ==================== UI ====================
+    function showPage(name, btn) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+      document.getElementById('page-' + name).classList.add('active');
+      btn.classList.add('active');
+      if (name === 'istatistik') renderStats();
+    }
 
-    <div class="tap-hint">Dokunarak say</div>
-    <div class="sets-display" id="setsDisplay"></div>
+    function setDateDisplay() {
+      const d = new Date();
+      const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      document.getElementById('dateDisplay').textContent = d.toLocaleDateString('tr-TR', opts);
+    }
 
-    <div class="controls">
-      <button class="btn" onclick="undoTap()">↩ Geri Al</button>
-      <button class="btn" onclick="resetCounter()">Sıfırla</button>
-      <button class="btn btn-primary" onclick="saveSession()">✓ Kaydet</button>
-    </div>
-  </div>
+    function populateZikirSelect() {
+      const sel = document.getElementById('zikirSelect');
+      sel.innerHTML = '';
+      state.zikirler.forEach(z => {
+        const opt = document.createElement('option');
+        opt.value = z.id;
+        opt.textContent = z.name;
+        if (z.id === state.currentZikirId) opt.selected = true;
+        sel.appendChild(opt);
+      });
+    }
 
-  <!-- İSTATİSTİK -->
-  <div class="page" id="page-istatistik">
-    <div class="section-title">Bugünkü Özet</div>
-    <div class="stat-card">
-      <div class="stat-grid" id="statGrid"></div>
-    </div>
-    <div class="section-title">Geçmiş Kayıtlar</div>
-    <div class="history-list" id="historyList"></div>
-  </div>
+    function getCurrentZikir() {
+      return state.zikirler.find(z => z.id === state.currentZikirId) || state.zikirler[0];
+    }
 
-  <!-- AYARLAR -->
-  <div class="page" id="page-ayarlar">
-    <div class="section-title">Sayaç Ayarları</div>
-    <div class="setting-group">
-      <div class="setting-row">
-        <div>
-          <div class="setting-label">Hedef Sayı</div>
-          <div class="setting-desc">Her tur için sayım hedefi</div>
-        </div>
-        <div class="num-input">
-          <button class="num-btn" onclick="changeTarget(-1)">−</button>
-          <div class="num-val" id="targetDisplay">33</div>
-          <button class="num-btn" onclick="changeTarget(1)">+</button>
-        </div>
-      </div>
-      <div class="setting-row">
-        <div>
-          <div class="setting-label">Titreşim</div>
-          <div class="setting-desc">Her dokunuşta titreşim</div>
-        </div>
-        <label class="toggle">
-          <input type="checkbox" id="vibToggle" checked onchange="saveSetting('vibration', this.checked)"/>
-          <div class="toggle-slider"></div>
-        </label>
-      </div>
-      <div class="setting-row">
-        <div>
-          <div class="setting-label">Tamamlanma Sesi</div>
-          <div class="setting-desc">Tur tamamlandığında ses</div>
-        </div>
-        <label class="toggle">
-          <input type="checkbox" id="soundToggle" checked onchange="saveSetting('sound', this.checked)"/>
-          <div class="toggle-slider"></div>
-        </label>
-      </div>
-    </div>
+    function updateArabicDisplay() {
+      const z = getCurrentZikir();
+      document.getElementById('arabicText').textContent = z.arabic || '';
+      document.getElementById('translitText').textContent = z.translit || '';
+      document.getElementById('meaningText').textContent = z.meaning || '';
+    }
 
-    <div class="section-title">Özel Zikir Ekle</div>
-    <div class="setting-group">
-      <div class="custom-form">
-        <input class="input-field" id="customArabic" placeholder="Arapça metin (isteğe bağlı)" dir="rtl"/>
-        <input class="input-field" id="customName" placeholder="Zikir adı (örn: Allahu Ekber)"/>
-        <input class="input-field" id="customTranslit" placeholder="Okunuş"/>
-        <input class="input-field" id="customMeaning" placeholder="Anlamı"/>
-        <button class="btn btn-primary" onclick="addCustomZikir()">+ Zikir Ekle</button>
-      </div>
-    </div>
+    function updateCounterUI() {
+      const num = document.getElementById('counterNum');
+      num.textContent = state.count;
+      document.getElementById('counterTarget').textContent = '/ ' + state.target;
 
-    <div class="section-title">Ana Ekrana Ekle (PWA)</div>
-    <div class="install-card">
-      <h3>📱 Uygulamayı Yükle</h3>
-      <button id="directInstallBtn" onclick="triggerInstall()">⊕ Uygulamayı Yükle</button>
-      <div class="install-steps">
-        <div class="install-step"><span class="ico">🍎</span><span><strong>iPhone/iPad:</strong> Safari'de aç → Paylaş ↑ → "Ana Ekrana Ekle"</span></div>
-        <div class="install-step"><span class="ico">🤖</span><span><strong>Android:</strong> Chrome ⋮ → "Ana ekrana ekle" veya "Uygulamayı yükle"</span></div>
-        <div class="install-step"><span class="ico">💻</span><span><strong>Masaüstü:</strong> Chrome/Edge adres çubuğu sağındaki ⊕ simgesine tıkla</span></div>
-        <div class="install-step"><span class="ico">⚠️</span><span>PWA çalışması için dosyanın bir <strong>web sunucusunda</strong> (HTTPS) barındırılması gerekir. Doğrudan dosya olarak açıldığında yükleme seçeneği çıkmayabilir.</span></div>
-      </div>
-    </div>
+      // Progress circle
+      const circumference = 565.5;
+      const progress = Math.min(state.count / state.target, 1);
+      const offset = circumference * (1 - progress);
+      document.getElementById('progressCircle').style.strokeDashoffset = offset;
 
-    <div class="section-title">Tehlikeli Bölge</div>
-    <div class="setting-group">
-      <div class="setting-row">
-        <div>
-          <div class="setting-label" style="color:#e07070">Tüm Verileri Sil</div>
-          <div class="setting-desc">Geçmiş kayıtlar silinir</div>
-        </div>
-        <button class="btn" style="flex:0;color:#e07070;border-color:#8b2020" onclick="clearAllData()">Sil</button>
-      </div>
-    </div>
-
-    <div class="ornament">✦ ✦ ✦</div>
-  </div>
-</div>
-
-<script>
-// ============================================================
-// 1. PWA MANIFEST — dinamik olarak eklenir
-// ============================================================
-(function injectManifest() {
-  const iconSvg192 = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192"><rect width="192" height="192" rx="32" fill="#1a0f0a"/><circle cx="96" cy="96" r="75" fill="none" stroke="#c9973a" stroke-width="3" opacity="0.5"/><text x="96" y="118" text-anchor="middle" font-size="80" fill="#c9973a">☽</text></svg>`;
-  const iconSvg512 = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="80" fill="#1a0f0a"/><circle cx="256" cy="256" r="200" fill="none" stroke="#c9973a" stroke-width="6" opacity="0.5"/><text x="256" y="310" text-anchor="middle" font-size="200" fill="#c9973a">☽</text></svg>`;
-
-  const b64_192 = btoa(iconSvg192);
-  const b64_512 = btoa(iconSvg512);
-
-  const manifest = {
-    name: "Zikir - Manevi Tesbihat",
-    short_name: "Zikir",
-    description: "Günlük zikir ve tesbihat uygulaması",
-    start_url: "./",
-    scope: "./",
-    display: "standalone",
-    background_color: "#0d0705",
-    theme_color: "#1a0f0a",
-    orientation: "portrait-primary",
-    lang: "tr",
-    categories: ["lifestyle"],
-    icons: [
-      { src: "data:image/svg+xml;base64," + b64_192, sizes: "192x192", type: "image/svg+xml", purpose: "any" },
-      { src: "data:image/svg+xml;base64," + b64_512, sizes: "512x512", type: "image/svg+xml", purpose: "maskable" }
-    ]
-  };
-
-  const blob = new Blob([JSON.stringify(manifest)], { type: 'application/manifest+json' });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement('link');
-  link.rel = 'manifest';
-  link.href = url;
-  document.head.appendChild(link);
-})();
-
-// ============================================================
-// 2. SERVICE WORKER — inline Blob olarak kaydedilir
-// ============================================================
-if ('serviceWorker' in navigator) {
-  const swCode = `
-    const CACHE_NAME = 'zikir-cache-v2';
-
-    self.addEventListener('install', event => {
-      self.skipWaiting();
-      event.waitUntil(
-        caches.open(CACHE_NAME).then(cache => {
-          return cache.addAll([self.registration.scope]).catch(() => {});
-        })
-      );
-    });
-
-    self.addEventListener('activate', event => {
-      event.waitUntil(
-        caches.keys().then(keys =>
-          Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
-        ).then(() => self.clients.claim())
-      );
-    });
-
-    self.addEventListener('fetch', event => {
-      if (event.request.method !== 'GET') return;
-      event.respondWith(
-        caches.open(CACHE_NAME).then(cache =>
-          fetch(event.request)
-            .then(response => {
-              if (response.ok) cache.put(event.request, response.clone());
-              return response;
-            })
-            .catch(() => cache.match(event.request))
-        )
-      );
-    });
-  `;
-
-  const swBlob = new Blob([swCode], { type: 'application/javascript' });
-  const swUrl = URL.createObjectURL(swBlob);
-
-  navigator.serviceWorker.register(swUrl, { scope: './' })
-    .then(reg => {
-      console.log('[SW] Kaydedildi, scope:', reg.scope);
-    })
-    .catch(err => {
-      console.warn('[SW] Kayıt hatası (dosya olarak açılıyorsa normaldir):', err.message);
-    });
-}
-
-// ============================================================
-// 3. PWA INSTALL PROMPT
-// ============================================================
-let deferredPrompt = null;
-
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  document.getElementById('installBanner').classList.add('visible');
-  document.getElementById('directInstallBtn').classList.add('visible');
-});
-
-window.addEventListener('appinstalled', () => {
-  document.getElementById('installBanner').classList.remove('visible');
-  document.getElementById('directInstallBtn').classList.remove('visible');
-  deferredPrompt = null;
-  console.log('[PWA] Uygulama kuruldu!');
-});
-
-function triggerInstall() {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(choice => {
-      if (choice.outcome === 'accepted') {
-        document.getElementById('installBanner').classList.remove('visible');
+      // Sets dots
+      const setsDiv = document.getElementById('setsDisplay');
+      setsDiv.innerHTML = '';
+      if (state.sets > 0) {
+        const label = document.createElement('span');
+        label.textContent = 'Turlar:';
+        label.style.fontSize = '0.75rem';
+        label.style.color = 'var(--cream-dim)';
+        setsDiv.appendChild(label);
+        for (let i = 0; i < Math.min(state.sets, 10); i++) {
+          const dot = document.createElement('div');
+          dot.className = 'set-dot done';
+          setsDiv.appendChild(dot);
+        }
+        if (state.sets > 10) {
+          const more = document.createElement('span');
+          more.textContent = '+' + (state.sets - 10);
+          more.style.fontSize = '0.7rem';
+          more.style.color = 'var(--gold-dim)';
+          setsDiv.appendChild(more);
+        }
       }
-      deferredPrompt = null;
+    }
+
+    // ==================== ACTIONS ====================
+    function handleTap() {
+      state.count++;
+
+      // Tap animation
+      const num = document.getElementById('counterNum');
+      num.classList.add('tap');
+      setTimeout(() => num.classList.remove('tap'), 100);
+
+      // Ripple
+      const wrap = document.getElementById('counterWrap');
+      const ripple = document.createElement('div');
+      ripple.className = 'ripple';
+      wrap.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 600);
+
+      // Vibration
+      if (state.vibration && navigator.vibrate) navigator.vibrate(30);
+
+      // Check completion
+      if (state.count >= state.target) {
+        state.sets++;
+        state.count = 0;
+        onSetComplete();
+      }
+
+      updateCounterUI();
+      saveState();
+    }
+
+    function onSetComplete() {
+      // Flash
+      const flash = document.getElementById('completionFlash');
+      flash.classList.add('show');
+      setTimeout(() => flash.classList.remove('show'), 1000);
+
+      // Sound
+      if (state.sound) playBeep();
+
+      // Vibrate pattern
+      if (state.vibration && navigator.vibrate) navigator.vibrate([100, 50, 100]);
+    }
+
+    function playBeep() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.type = 'sine';
+        osc.frequency.value = 528;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.8);
+        osc.start(ctx.currentTime);
+        osc.stop(ctx.currentTime + 0.8);
+      } catch(e) {}
+    }
+
+    function undoTap() {
+      if (state.count > 0) {
+        state.count--;
+        updateCounterUI();
+        saveState();
+      } else if (state.sets > 0) {
+        state.sets--;
+        state.count = state.target - 1;
+        updateCounterUI();
+        saveState();
+      }
+    }
+
+    function resetCounter() {
+      if (state.count === 0 && state.sets === 0) return;
+      if (confirm('Sayacı sıfırlamak istiyor musunuz?')) {
+        state.count = 0;
+        state.sets = 0;
+        updateCounterUI();
+        saveState();
+      }
+    }
+
+    function saveSession() {
+      const z = getCurrentZikir();
+      const total = state.sets * state.target + state.count;
+      if (total === 0) { alert('Henüz sayım yapılmadı.'); return; }
+
+      const record = {
+        id: Date.now(),
+        zikirName: z.name,
+        sets: state.sets,
+        extra: state.count,
+        total: total,
+        date: new Date().toLocaleDateString('tr-TR'),
+        time: new Date().toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })
+      };
+
+      state.history.unshift(record);
+      state.count = 0;
+      state.sets = 0;
+      updateCounterUI();
+      saveState();
+      alert(`✓ Kaydedildi\n${z.name}: ${total} kez`);
+    }
+
+    function changeZikir() {
+      state.currentZikirId = document.getElementById('zikirSelect').value;
+      state.count = 0;
+      state.sets = 0;
+      updateArabicDisplay();
+      updateCounterUI();
+      saveState();
+    }
+
+    // ==================== SETTINGS ====================
+    function changeTarget(delta) {
+      state.target = Math.max(1, Math.min(999, state.target + delta));
+      document.getElementById('targetDisplay').textContent = state.target;
+      updateCounterUI();
+      saveState();
+    }
+
+    function saveSetting(key, value) {
+      state[key] = value;
+      saveState();
+    }
+
+    function addCustomZikir() {
+      const arabic = document.getElementById('customArabic').value.trim();
+      const name = document.getElementById('customName').value.trim();
+      const translit = document.getElementById('customTranslit').value.trim();
+      const meaning = document.getElementById('customMeaning').value.trim();
+
+      if (!name) { alert('Zikir adı gereklidir.'); return; }
+
+      const custom = {
+        id: 'custom_' + Date.now(),
+        name, arabic, translit, meaning
+      };
+
+      state.zikirler.push(custom);
+      populateZikirSelect();
+      saveState();
+
+      document.getElementById('customArabic').value = '';
+      document.getElementById('customName').value = '';
+      document.getElementById('customTranslit').value = '';
+      document.getElementById('customMeaning').value = '';
+      alert(`"${name}" eklendi.`);
+    }
+
+    function clearAllData() {
+      if (confirm('Tüm geçmiş kayıtlar silinecek. Emin misiniz?')) {
+        state.history = [];
+        saveState();
+        alert('Veriler silindi.');
+      }
+    }
+
+    // ==================== STATS ====================
+    function renderStats() {
+      const today = new Date().toLocaleDateString('tr-TR');
+      const todayRecords = state.history.filter(h => h.date === today);
+      const todayTotal = todayRecords.reduce((s, h) => s + h.total, 0);
+      const allTotal = state.history.reduce((s, h) => s + h.total, 0);
+      const days = new Set(state.history.map(h => h.date)).size;
+
+      const grid = document.getElementById('statGrid');
+      grid.innerHTML = `
+        <div class="stat-item">
+          <div class="stat-value">${todayTotal}</div>
+          <div class="stat-label">Bugün</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">${todayRecords.length}</div>
+          <div class="stat-label">Bugün Seans</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">${allTotal.toLocaleString('tr-TR')}</div>
+          <div class="stat-label">Toplam</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">${days}</div>
+          <div class="stat-label">Aktif Gün</div>
+        </div>
+      `;
+
+      const list = document.getElementById('historyList');
+      if (state.history.length === 0) {
+        list.innerHTML = '<div class="empty-state">Henüz kayıt yok.<br/>Zikir çekip "Kaydet" butonuna basın.</div>';
+        return;
+      }
+
+      list.innerHTML = state.history.slice(0, 30).map(h => `
+        <div class="history-item">
+          <div>
+            <div class="history-zikir">${h.zikirName}</div>
+            <div class="history-detail">${h.date} ${h.time} · ${h.sets} tur${h.extra > 0 ? ' + ' + h.extra : ''}</div>
+          </div>
+          <div class="history-count">${h.total}</div>
+        </div>
+      `).join('');
+    }
+
+    // ==================== INIT ====================
+    function init() {
+      loadState();
+      setDateDisplay();
+      populateZikirSelect();
+      updateArabicDisplay();
+      updateCounterUI();
+
+      // Restore settings UI
+      document.getElementById('targetDisplay').textContent = state.target;
+      document.getElementById('vibToggle').checked = state.vibration;
+      document.getElementById('soundToggle').checked = state.sound;
+    }
+
+    // Keyboard support
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' || e.code === 'Enter') {
+        const activePage = document.querySelector('.page.active');
+        if (activePage && activePage.id === 'page-zikir') {
+          e.preventDefault();
+          handleTap();
+        }
+      }
     });
-  } else {
-    alert('Yükleme butonu henüz aktif değil.\n\nBu dosyayı bir web sunucusuna (HTTPS) yükleyin, ardından Chrome/Edge tarayıcıda adres çubuğundaki ⊕ simgesi veya menüdeki "Uygulamayı yükle" seçeneği çıkacaktır.\n\niPhone için: Safari → Paylaş → Ana Ekrana Ekle');
-  }
-}
 
-function hideBanner() {
-  document.getElementById('installBanner').classList.remove('visible');
-}
-
-// Online/Offline
-window.addEventListener('offline', () => {
-  document.getElementById('offlineBar').classList.add('show');
-  document.getElementById('onlineBar').classList.remove('show');
-});
-
-window.addEventListener('online', () => {
-  document.getElementById('offlineBar').classList.remove('show');
-  const bar = document.getElementById('onlineBar');
-  bar.classList.add('show');
-  setTimeout(() => bar.classList.remove('show'), 3000);
-});
-
-// ============================================================
-// 4. VERİ
-// ============================================================
-const DEFAULT_ZIKIRLER = [
-  { id: 'subhanallah',  name: 'Sübhanallah',       arabic: 'سُبْحَانَ اللهِ',                      translit: 'Sübhânallâh',                      meaning: "Allah'ı tüm noksanlıklardan tenzih ederim" },
-  { id: 'elhamdulillah',name: 'Elhamdülillah',      arabic: 'الْحَمْدُ للهِ',                       translit: 'Elhamdülillâh',                    meaning: "Hamd Allah'a mahsustur" },
-  { id: 'allahuekber',  name: 'Allahu Ekber',       arabic: 'اللهُ أَكْبَرُ',                       translit: 'Allâhu Ekber',                     meaning: 'Allah en büyüktür' },
-  { id: 'laileha',      name: 'Lâ ilâhe illallah',  arabic: 'لَا إِلَهَ إِلَّا اللهُ',             translit: 'Lâ ilâhe illallâh',                meaning: "Allah'tan başka ilah yoktur" },
-  { id: 'salavat',      name: 'Salavat',            arabic: 'اَللّٰهُمَّ صَلِّ عَلٰى مُحَمَّدٍ',  translit: 'Allâhümme salli alâ Muhammed',     meaning: "Allah'ım, Muhammed'e salat et" },
-  { id: 'istigfar',     name: 'İstiğfar',           arabic: 'أَسْتَغْفِرُ اللهَ',                  translit: 'Estağfirullâh',                    meaning: "Allah'tan bağışlanma dilerim" },
-  { id: 'hasbiyallah',  name: 'Hasbiyallah',        arabic: 'حَسْبِيَ اللهُ وَنِعْمَ الْوَكِيلُ', translit: "Hasbiyallâhu ve ni'mel vekîl",     meaning: 'Allah bana yeter, O ne güzel vekildir' },
-  { id: 'subhane',      name: 'Tesbih Tesbihi',     arabic: 'سُبْحَانَ اللهِ وَبِحَمْدِهِ',       translit: 'Sübhânallâhi ve bi hamdihî',       meaning: "Allah'ı hamdederek tenzih ederim" },
-];
-
-let state = {
-  count: 0, sets: 0,
-  currentZikirId: 'subhanallah',
-  target: 33,
-  vibration: true,
-  sound: true,
-  zikirler: [],
-  history: []
-};
-
-function loadState() {
-  try {
-    const saved = localStorage.getItem('zikir_app_v2');
-    if (saved) state = { ...state, ...JSON.parse(saved) };
-  } catch(e) {}
-  state.zikirler = [
-    ...DEFAULT_ZIKIRLER,
-    ...(state.zikirler || []).filter(z => !DEFAULT_ZIKIRLER.find(d => d.id === z.id))
-  ];
-}
-
-function saveState() {
-  try {
-    localStorage.setItem('zikir_app_v2', JSON.stringify({
-      currentZikirId: state.currentZikirId,
-      target: state.target,
-      vibration: state.vibration,
-      sound: state.sound,
-      zikirler: state.zikirler.filter(z => !DEFAULT_ZIKIRLER.find(d => d.id === z.id)),
-      history: state.history.slice(0, 100)
-    }));
-  } catch(e) {}
-}
-
-// ============================================================
-// 5. UI
-// ============================================================
-function showPage(name, btn) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-  document.getElementById('page-' + name).classList.add('active');
-  btn.classList.add('active');
-  if (name === 'istatistik') renderStats();
-}
-
-function setDateDisplay() {
-  document.getElementById('dateDisplay').textContent =
-    new Date().toLocaleDateString('tr-TR', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
-}
-
-function populateZikirSelect() {
-  const sel = document.getElementById('zikirSelect');
-  sel.innerHTML = '';
-  state.zikirler.forEach(z => {
-    const opt = document.createElement('option');
-    opt.value = z.id;
-    opt.textContent = z.name;
-    if (z.id === state.currentZikirId) opt.selected = true;
-    sel.appendChild(opt);
-  });
-}
-
-function getCurrentZikir() {
-  return state.zikirler.find(z => z.id === state.currentZikirId) || state.zikirler[0];
-}
-
-function updateArabicDisplay() {
-  const z = getCurrentZikir();
-  document.getElementById('arabicText').textContent = z.arabic || '';
-  document.getElementById('translitText').textContent = z.translit || '';
-  document.getElementById('meaningText').textContent = z.meaning || '';
-}
-
-function updateCounterUI() {
-  document.getElementById('counterNum').textContent = state.count;
-  document.getElementById('counterTarget').textContent = '/ ' + state.target;
-  const offset = 565.5 * (1 - Math.min(state.count / state.target, 1));
-  document.getElementById('progressCircle').style.strokeDashoffset = offset;
-
-  const setsDiv = document.getElementById('setsDisplay');
-  setsDiv.innerHTML = '';
-  if (state.sets > 0) {
-    const lbl = document.createElement('span');
-    lbl.textContent = 'Turlar:';
-    lbl.style.cssText = 'font-size:0.75rem;color:var(--cream-dim)';
-    setsDiv.appendChild(lbl);
-    for (let i = 0; i < Math.min(state.sets, 10); i++) {
-      const dot = document.createElement('div');
-      dot.className = 'set-dot done';
-      setsDiv.appendChild(dot);
-    }
-    if (state.sets > 10) {
-      const more = document.createElement('span');
-      more.textContent = '+' + (state.sets - 10);
-      more.style.cssText = 'font-size:0.7rem;color:var(--gold-dim)';
-      setsDiv.appendChild(more);
-    }
-  }
-}
-
-// ============================================================
-// 6. ACTIONS
-// ============================================================
-let lastTapTime = 0;
-
-function handleTap() {
-  const now = Date.now();
-  if (now - lastTapTime < 80) return; // debounce
-  lastTapTime = now;
-
-  state.count++;
-
-  const num = document.getElementById('counterNum');
-  num.classList.remove('tap');
-  void num.offsetWidth;
-  num.classList.add('tap');
-  setTimeout(() => num.classList.remove('tap'), 120);
-
-  const wrap = document.getElementById('counterWrap');
-  const ripple = document.createElement('div');
-  ripple.className = 'ripple';
-  wrap.appendChild(ripple);
-  setTimeout(() => ripple.remove(), 650);
-
-  if (state.vibration && navigator.vibrate) navigator.vibrate(25);
-
-  if (state.count >= state.target) {
-    state.sets++;
-    state.count = 0;
-    onSetComplete();
-  }
-
-  updateCounterUI();
-  saveState();
-}
-
-function onSetComplete() {
-  const flash = document.getElementById('completionFlash');
-  flash.classList.remove('show');
-  void flash.offsetWidth;
-  flash.classList.add('show');
-  if (state.sound) playBeep();
-  if (state.vibration && navigator.vibrate) navigator.vibrate([80, 40, 120]);
-}
-
-function playBeep() {
-  try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.type = 'sine';
-    osc.frequency.value = 528;
-    gain.gain.setValueAtTime(0.3, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.9);
-    osc.start(ctx.currentTime);
-    osc.stop(ctx.currentTime + 0.9);
-  } catch(e) {}
-}
-
-function undoTap() {
-  if (state.count > 0) state.count--;
-  else if (state.sets > 0) { state.sets--; state.count = state.target - 1; }
-  updateCounterUI();
-  saveState();
-}
-
-function resetCounter() {
-  if (state.count === 0 && state.sets === 0) return;
-  if (confirm('Sayacı sıfırlamak istiyor musunuz?')) {
-    state.count = 0; state.sets = 0;
-    updateCounterUI(); saveState();
-  }
-}
-
-function saveSession() {
-  const z = getCurrentZikir();
-  const total = state.sets * state.target + state.count;
-  if (total === 0) { alert('Henüz sayım yapılmadı.'); return; }
-
-  state.history.unshift({
-    id: Date.now(), zikirName: z.name,
-    sets: state.sets, extra: state.count, total,
-    date: new Date().toLocaleDateString('tr-TR'),
-    time: new Date().toLocaleTimeString('tr-TR', { hour:'2-digit', minute:'2-digit' })
-  });
-
-  state.count = 0; state.sets = 0;
-  updateCounterUI(); saveState();
-  alert('✓ Kaydedildi\n' + z.name + ': ' + total + ' kez');
-}
-
-function changeZikir() {
-  state.currentZikirId = document.getElementById('zikirSelect').value;
-  state.count = 0; state.sets = 0;
-  updateArabicDisplay(); updateCounterUI(); saveState();
-}
-
-// ============================================================
-// 7. SETTINGS
-// ============================================================
-function changeTarget(delta) {
-  state.target = Math.max(1, Math.min(999, state.target + delta));
-  document.getElementById('targetDisplay').textContent = state.target;
-  updateCounterUI(); saveState();
-}
-
-function saveSetting(key, value) {
-  state[key] = value; saveState();
-}
-
-function addCustomZikir() {
-  const arabic = document.getElementById('customArabic').value.trim();
-  const name = document.getElementById('customName').value.trim();
-  const translit = document.getElementById('customTranslit').value.trim();
-  const meaning = document.getElementById('customMeaning').value.trim();
-  if (!name) { alert('Zikir adı gereklidir.'); return; }
-  state.zikirler.push({ id: 'custom_' + Date.now(), name, arabic, translit, meaning });
-  populateZikirSelect(); saveState();
-  ['customArabic','customName','customTranslit','customMeaning'].forEach(id => document.getElementById(id).value = '');
-  alert('"' + name + '" eklendi.');
-}
-
-function clearAllData() {
-  if (confirm('Tüm geçmiş kayıtlar silinecek. Emin misiniz?')) {
-    state.history = []; saveState(); alert('Veriler silindi.');
-  }
-}
-
-// ============================================================
-// 8. STATS
-// ============================================================
-function renderStats() {
-  const today = new Date().toLocaleDateString('tr-TR');
-  const todayRec = state.history.filter(h => h.date === today);
-  const todayTotal = todayRec.reduce((s,h) => s + h.total, 0);
-  const allTotal = state.history.reduce((s,h) => s + h.total, 0);
-  const days = new Set(state.history.map(h => h.date)).size;
-
-  document.getElementById('statGrid').innerHTML =
-    '<div class="stat-item"><div class="stat-value">' + todayTotal + '</div><div class="stat-label">Bugün</div></div>' +
-    '<div class="stat-item"><div class="stat-value">' + todayRec.length + '</div><div class="stat-label">Bugün Seans</div></div>' +
-    '<div class="stat-item"><div class="stat-value">' + allTotal.toLocaleString('tr-TR') + '</div><div class="stat-label">Toplam</div></div>' +
-    '<div class="stat-item"><div class="stat-value">' + days + '</div><div class="stat-label">Aktif Gün</div></div>';
-
-  const list = document.getElementById('historyList');
-  if (!state.history.length) {
-    list.innerHTML = '<div class="empty-state">Henüz kayıt yok.<br/>Zikir çekip "Kaydet" butonuna basın.</div>';
-    return;
-  }
-  list.innerHTML = state.history.slice(0,30).map(h =>
-    '<div class="history-item"><div>' +
-    '<div class="history-zikir">' + h.zikirName + '</div>' +
-    '<div class="history-detail">' + h.date + ' ' + h.time + ' · ' + h.sets + ' tur' + (h.extra > 0 ? ' + ' + h.extra : '') + '</div>' +
-    '</div><div class="history-count">' + h.total + '</div></div>'
-  ).join('');
-}
-
-// ============================================================
-// 9. EVENT LISTENERS & INIT
-// ============================================================
-
-// Touch — iPhone/Android için ayrı handler (300ms gecikmeyi önler)
-let touchStarted = false;
-document.getElementById('counterWrap').addEventListener('touchstart', (e) => {
-  e.preventDefault();
-  touchStarted = true;
-  handleTap();
-}, { passive: false });
-
-document.getElementById('counterWrap').addEventListener('click', () => {
-  if (touchStarted) { touchStarted = false; return; } // zaten touch ile tetiklendi
-  handleTap();
-});
-
-// Klavye kısayolu
-document.addEventListener('keydown', (e) => {
-  if ((e.code === 'Space' || e.code === 'Enter') &&
-      !['INPUT','SELECT','TEXTAREA','BUTTON'].includes(e.target.tagName)) {
-    const active = document.querySelector('.page.active');
-    if (active && active.id === 'page-zikir') {
-      e.preventDefault();
-      handleTap();
-    }
-  }
-});
-
-function init() {
-  loadState();
-  setDateDisplay();
-  populateZikirSelect();
-  updateArabicDisplay();
-  updateCounterUI();
-  document.getElementById('targetDisplay').textContent = state.target;
-  document.getElementById('vibToggle').checked = state.vibration;
-  document.getElementById('soundToggle').checked = state.sound;
-}
-
-init();
-</script>
+    init();
+  </script>
 </body>
 </html>
